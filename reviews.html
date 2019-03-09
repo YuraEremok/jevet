@@ -1,0 +1,543 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+   
+    <title>Отзывы</title>
+<link href="img/favicon.ico" rel="shortcut icon" type="image/x-icon" />
+
+    <!-- Bootstrap -->
+            <meta name="viewport" content="width=device-width, initial-scale=1.0">
+            <meta name = "viewport" content = "user-scalable=no, width=device-width">
+<meta name="apple-mobile-web-app-capable" content="yes" />
+          <link href="css/bootstrap-responsive.css" rel="stylesheet">
+      <link href="css/bootstrap.css" rel="stylesheet" >
+      <link href="css/style.css" rel="stylesheet">
+      <link href="css/bootstrap.min.css" rel="stylesheet">
+      <link href="css/custom-fonts.css" rel="stylesheet">
+      <link href="css/carousel_another.css" rel="stylesheet">
+      
+                  
+                   <!-- Add jQuery library -->
+	<script type="text/javascript" src="fancybox/jquery-1.10.1.min.js"></script>
+
+	<!-- Add mousewheel plugin (this is optional) -->
+	<script type="text/javascript" src="fancybox/jquery.mousewheel-3.0.6.pack.js"></script>
+
+	<!-- Add fancyBox main JS and CSS files -->
+	<script type="text/javascript" src="fancybox/jquery.fancybox.pack.js"></script>
+	<link rel="stylesheet" type="text/css" href="fancybox/jquery.fancybox.css" media="screen" />
+
+	<!-- Add Button helper (this is optional) -->
+	<link rel="stylesheet" type="text/css" href="fancybox/jquery.fancybox-buttons.css?v=1.0.5" />
+	<script type="text/javascript" src="fancybox/jquery.fancybox-buttons.js?v=1.0.5"></script>
+
+	<!-- Add Thumbnail helper (this is optional) -->
+	<link rel="stylesheet" type="text/css" href="fancybox/jquery.fancybox-thumbs.css?v=1.0.7" />
+	<script type="text/javascript" src="fancybox/jquery.fancybox-thumbs.js?v=1.0.7"></script>
+
+	<!-- Add Media helper (this is optional) -->
+	<script type="text/javascript" src="fancybox/jquery.fancybox-media.js?v=1.0.6"></script>
+	
+	
+
+ <link href="css/main.css" rel="stylesheet">
+      <link href="css/moderna.css" rel="stylesheet">
+       <link href="css/custom-fonts.css" rel="stylesheet">
+     
+   
+        
+    <!-- HTML
+    5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+      <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+    
+   <script type="text/javascript">
+		$(document).ready(function() {
+			/*
+			 *  Simple image gallery. Uses default settings
+			 */
+
+			$('.fancybox').fancybox();
+
+			/*
+			 *  Different effects
+			 */
+
+			// Change title type, overlay closing speed
+			$(".fancybox-effects-a").fancybox({
+				helpers: {
+					title : {
+						type : 'outside'
+					},
+					overlay : {
+						speedOut : 0
+					}
+				}
+			});
+
+			// Disable opening and closing animations, change title type
+			$(".fancybox-effects-b").fancybox({
+				openEffect  : 'none',
+				closeEffect	: 'none',
+
+				helpers : {
+					title : {
+						type : 'over'
+					}
+				}
+			});
+
+			// Set custom style, close if clicked, change title type and overlay color
+			$(".fancybox-effects-c").fancybox({
+				wrapCSS    : 'fancybox-custom',
+				closeClick : true,
+
+				openEffect : 'none',
+
+				helpers : {
+					title : {
+						type : 'inside'
+					},
+					overlay : {
+						css : {
+							'background' : 'rgba(238,238,238,0.85)'
+						}
+					}
+				}
+			});
+
+			// Remove padding, set opening and closing animations, close if clicked and disable overlay
+			$(".fancybox-effects-d").fancybox({
+				padding: 0,
+
+				openEffect : 'elastic',
+				openSpeed  : 150,
+
+				closeEffect : 'elastic',
+				closeSpeed  : 150,
+
+				closeClick : true,
+
+				helpers : {
+					overlay : null
+				}
+			});
+
+			/*
+			 *  Button helper. Disable animations, hide close button, change title type and content
+			 */
+
+			$('.fancybox-buttons').fancybox({
+				openEffect  : 'none',
+				closeEffect : 'none',
+
+				prevEffect : 'none',
+				nextEffect : 'none',
+
+				closeBtn  : false,
+
+				helpers : {
+					title : {
+						type : 'inside'
+					},
+					buttons	: {}
+				},
+
+				afterLoad : function() {
+					this.title = 'Image ' + (this.index + 1) + ' of ' + this.group.length + (this.title ? ' - ' + this.title : '');
+				}
+			});
+
+
+			/*
+			 *  Thumbnail helper. Disable animations, hide close button, arrows and slide to next gallery item if clicked
+			 */
+
+			$('.fancybox-thumbs').fancybox({
+				prevEffect : 'none',
+				nextEffect : 'none',
+
+				closeBtn  : false,
+				arrows    : false,
+				nextClick : true,
+
+				helpers : {
+					thumbs : {
+						width  : 50,
+						height : 50
+					}
+				}
+			});
+
+			/*
+			 *  Media helper. Group items, disable animations, hide arrows, enable media and button helpers.
+			*/
+			$('.fancybox-media')
+				.attr('rel', 'media-gallery')
+				.fancybox({
+					openEffect : 'none',
+					closeEffect : 'none',
+					prevEffect : 'none',
+					nextEffect : 'none',
+
+					arrows : false,
+					helpers : {
+						media : {},
+						buttons : {}
+					}
+				});
+
+			/*
+			 *  Open manually
+			 */
+
+			$("#fancybox-manual-a").click(function() {
+				$.fancybox.open('1_b.jpg');
+			});
+
+			$("#fancybox-manual-b").click(function() {
+				$.fancybox.open({
+					href : 'iframe.html',
+					type : 'iframe',
+					padding : 5
+				});
+			});
+
+			$("#fancybox-manual-c").click(function() {
+				$.fancybox.open([
+					{
+						href : '1_b.jpg',
+						title : 'My title'
+					}, {
+						href : '2_b.jpg',
+						title : '2nd title'
+					}, {
+						href : '3_b.jpg'
+					}
+				], {
+					helpers : {
+						thumbs : {
+							width: 75,
+							height: 50
+						}
+					}
+				});
+			});
+                                $(document).ready(function() {
+	$(".fancybox-button").fancybox({
+		prevEffect		: 'none',
+		nextEffect		: 'none',
+		closeBtn		: false,
+		helpers		: {
+			title	: { type : 'inside' },
+			buttons	: {}
+		}
+	});
+});
+
+		});
+	</script>
+   
+ 
+  </head>
+  
+  <body>
+    
+
+   
+       
+                     <nav class="navbar navbar-default navbar-inverse" role="navigation">
+                        
+<div class="container">
+
+      <div class="row">
+               
+                <div class="col-md-3  ">
+                           <div class="log hidden-xs hidden-sm">
+                                     <a href="index.html">          <a href="index.html"><img  style="margin-top:5px;margin-bottom:5px;" class="img-responsive" src="img/header.png"></a>
+</a>
+
+                          </div>
+                          <div  class="visible-xs text-nav" ><h1> «ДЖЕВЕТ»</h1></div>
+                          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#b-menu-1">
+                          <span class="sr-only">Toggle navigation</span>
+                          <span class="glyphicon glyphicon-arrow-down"></span>
+                          MENU
+                  </button>
+                </div>
+     <div class=" col-md-6 ">
+                    <div class="collapse navbar-collapse " id="b-menu-1" >
+        <ul class="nav navbar-nav ">
+                    <li ><a href="index.html">ГЛАВНАЯ</a></li>
+            <li  class="dropdown active">
+                    <a href="#" class="dropdown-toggle"  data-toggle="dropdown" >О ПРЕДПРИЯТИИ&nbsp;<span                      class="glyphicon glyphicon-chevron-down"></span></a>
+                <ul class="dropdown-menu">
+                    <li><a href="sertificaty.html">Лицензии и сертификаты</a></li>
+                    <li><a href="articles.html">Статьи</a></li>
+                    <li class="active"><a href="reviews.html">Отзывы </a></li>
+                    <li><a href="honors.html">Поощрения</a></li>
+                </ul>
+           </li>
+            <li ><a href="nashi raboty.html">НАШИ ОБЪЕКТЫ</a></li>
+            <li ><a href="contacts.html">КОНТАКТЫ</a></li>
+        </ul>
+</div> <!-- /.nav-collapse -->
+    </div>
+           
+           
+                               <div class="col-md-3  hidden-xs hidden-sm " >
+       <p  class="text-right" style="margin:0  16px 0 0  ;font-size:14px;text-shadow:1px 1px 1px #000;"><img  src="img/phone.png">&nbsp;&nbsp;<b>+375 (17) 397-20-44</b></p>   
+           <p class="text-right" style="margin:0 16px 0 0;font-size:14px;text-shadow:1px 1px 1px #000;"><img  src="img/velcom.png">&nbsp;&nbsp;<b>+375 (29) 631-11-30</b></p>   
+           <p class="text-right" style="margin:0 16px 1px 0 ;font-size:14px;text-shadow:1px 1px 1px #000;"><img  src="img/mts.png">&nbsp;&nbsp;<b>+375 (29) 770-01-86</b></p>                                  
+                                </div>
+                                
+                                <div class="col-sm-12 visible-sm hidden-md hidden-lg hidden-xs">
+<p  class="text-center" style="margin:0  16px 0 0  ;font-size:14px;text-shadow:1px 1px 1px #000;"><img  src="img/phone.png">&nbsp;&nbsp;<b>+375 (17) 397-20-44</b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<img  src="img/velcom.png">&nbsp;&nbsp;<b>+375 (29) 631-11-30</b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<img  src="img/mts.png">&nbsp;&nbsp;<b>+375 (29) 770-01-86</b></p>
+                                </div>
+ 
+    </div>
+</div>
+
+
+
+</nav> <!-- /.navbar -->      
+       
+         
+       
+
+
+
+
+
+
+  
+         
+         
+         
+        
+         
+   
+
+<div class="container">
+    <h4 class="section-title text-center hsection">ОТЗЫВЫ</h4>
+     <div class="row box">
+         <div class="col-md-2 col-xs-3 "> <a class="fancybox-button" rel="fancybox-button" href="img/reviews/otsyv.jpg" title="Holly blue (Masa_N)"><img class="img-responsive" src="img/reviews/otsyv.jpg" alt="" /></a></div>
+            
+          
+            
+<div class="col-md-8 col-xs-9 vcenter"  style="margin-top:60px;">
+             <p>&nbsp; &nbsp; &nbsp;<i><span style="font-size:larger;">Различные отзывы</span></i></p> 
+            
+            
+        </div>
+       </div>
+    
+       
+           <div class="row box">
+         <div class="col-md-2 col-xs-3 "> <a class="fancybox-button" rel="fancybox-button" href="img/reviews/grasso_1.jpg" title="Holly blue (Masa_N)"><img class="img-responsive" src="img/reviews/grasso_1.jpg" alt="" /></a></div>
+            
+             <div class="col-md-2 col-xs-3 "> <a class="fancybox-button" rel="fancybox-button" href="img/reviews/grasso_2.jpg" title="Holly blue (Masa_N)"><img class="img-responsive" src="img/reviews/grasso_2.jpg" alt="" /></a></div>
+            
+<div class="col-md-8 col-xs-6 vcenter">
+           <p>&nbsp; &nbsp; &nbsp;<i><span style="font-size:larger;"> «GEA grasso» </span></i></p>
+            
+            
+        </div>
+       </div>
+             
+                
+                   
+                         
+    
+    <div class="row box" >
+        
+            <div class="col-md-2 col-xs-3 "> <a class="fancybox-button" rel="fancybox-button" href="img/reviews/bereza_syr.jpg" title="Holly blue (Masa_N)"><img class="img-responsive" src="img/reviews/bereza_syr.jpg" alt="" /></a></div>
+            
+             <div class="col-md-2 col-xs-3 "> <a class="fancybox-button" rel="fancybox-button" href="img/reviews/bereza_syr1.jpg" title="Holly blue (Masa_N)"><img class="img-responsive" src="img/reviews/bereza_syr1.jpg" alt="" /></a></div>
+             
+              <div class="col-md-2 col-xs-3 "> <a class="fancybox-button" rel="fancybox-button" href="img/reviews/bereza_syr2.jpg" title="Holly blue (Masa_N)"><img class="img-responsive" src="img/reviews/bereza_syr2.jpg" alt="" /></a></div>
+            
+            
+            
+<div class="col-md-6 col-xs-2 vcenter hidden-xs">
+            <p>&nbsp; &nbsp; &nbsp;<i><span style="font-size:larger;">ОАО «Березовский сыродельный комбинат» </span></i></p>      
+        </div>            
+    </div>
+     
+     
+     
+     
+       
+       
+        
+      <div class="row box">
+         <div class="col-md-2 col-xs-3 "> <a class="fancybox-button" rel="fancybox-button" href="img/reviews/grodno_mk.jpg" title="Holly blue (Masa_N)"><img class="img-responsive" src="img/reviews/grodno_mk.jpg" alt="" /></a></div>
+            
+<div class="col-md-10 col-xs-9 vcenter">
+              <p>&nbsp; &nbsp; &nbsp;<i><span style="font-size:larger;">ОАО «Гродненский мясокомбинат» </span></i></p>
+            
+        </div>
+       </div>
+       
+      
+        
+      <div class="row box">
+         <div class="col-md-2 col-xs-3 "> <a class="fancybox-button" rel="fancybox-button" href="img/reviews/mozyr_moloko.jpg" title="Holly blue (Masa_N)"><img class="img-responsive" src="img/reviews/mozyr_moloko.jpg" alt="" /></a></div>
+            
+<div class="col-md-10 col-xs-9 vcenter">
+           <p>&nbsp; &nbsp; &nbsp;<i><span style="font-size:larger;">ЧПУП «Мозырские молочные продукты» </span></i></p>
+            
+            
+        </div>
+       </div>
+       
+       
+        
+     
+       
+       
+      
+       
+        <div class="row box">
+         <div class="col-md-2 col-xs-3 "> <a class="fancybox-button" rel="fancybox-button" href="img/reviews/santa.jpg" title="Holly blue (Masa_N)"><img class="img-responsive" src="img/reviews/santa.jpg" alt="" /></a></div>
+            
+<div class="col-md-10 col-xs-9 vcenter">
+             <p>&nbsp; &nbsp; &nbsp;<i><span style="font-size:larger;">СП «Санта Бремор» ООО –
+производство продуктов питания.  </span></i></p>
+            
+            
+        </div>
+       </div>
+       
+       
+          <div class="row box">
+         <div class="col-md-2 col-xs-3 "> <a class="fancybox-button" rel="fancybox-button" href="img/reviews/elvira.jpg" title="Holly blue (Masa_N)"><img class="img-responsive" src="img/reviews/elvira.jpg" alt="" /></a></div>
+            
+             <div class="col-md-2 col-xs-3 "> <a class="fancybox-button" rel="fancybox-button" href="img/reviews/elvira_2.jpg" title="Holly blue (Masa_N)"><img class="img-responsive" src="img/reviews/elvira_2.jpg" alt="" /></a></div>
+            
+<div class="col-md-8 col-xs-6 vcenter">
+            <p>&nbsp; &nbsp; &nbsp;<i><span style="font-size:larger;">  ЗАО «НПО «Эльвира» </span></i></p>
+           
+            
+        </div>
+       </div>
+       
+       
+       
+       <div class="row box">
+         <div class="col-md-2 col-xs-3 "> <a class="fancybox-button" rel="fancybox-button" href="img/reviews/elizovo_1.jpg" title="Holly blue (Masa_N)"><img class="img-responsive" src="img/reviews/elizovo_2.jpg" alt="" /></a></div>
+            
+             <div class="col-md-2 col-xs-3 "> <a class="fancybox-button" rel="fancybox-button" href="img/reviews/elizovo_2.jpg" title="Holly blue (Masa_N)"><img class="img-responsive" src="img/reviews/elizovo_2.jpg" alt="" /></a></div>
+            
+<div class="col-md-8 col-xs-6 vcenter">
+            <p>&nbsp; &nbsp; &nbsp;<i><span style="font-size:larger;"> Белорусско-Австрийское СЗАО «Стеклозавод Елизово»</span></i></p>
+            
+
+        </div>
+       </div>
+       
+       
+       
+        <div class="row box">
+         <div class="col-md-2 col-xs-3 "> <a class="fancybox-button" rel="fancybox-button" href="img/reviews/rybokompleks.jpg" title="Holly blue (Masa_N)"><img class="img-responsive" src="img/reviews/rybokompleks.jpg" alt="" /></a></div>
+            
+          
+            
+<div class="col-md-8 col-xs-9 vcenter">
+             <p>&nbsp; &nbsp; &nbsp;<i><span style="font-size:larger;">ОАО «Рыбокомплекс»</span></i></p>
+            
+            
+        </div>
+       </div>
+       
+       
+       
+        <div class="row box">
+         <div class="col-md-2 col-xs-3 "> <a class="fancybox-button" rel="fancybox-button" href="img/reviews/krinica.jpg" title="Holly blue (Masa_N)"><img class="img-responsive" src="img/reviews/krinica.jpg" alt="" /></a></div>
+            
+          
+            
+<div class="col-md-8 col-xs-9 vcenter">
+          <p>&nbsp; &nbsp; &nbsp;<i><span style="font-size:larger;">ОАО «Криница»</span></i></p>
+            
+            
+        </div>
+       </div>
+       
+       
+       
+       <div class="row box">
+         <div class="col-md-2 col-xs-3 "> <a class="fancybox-button" rel="fancybox-button" href="img/reviews/krion.jpg" title="Holly blue (Masa_N)"><img class="img-responsive" src="img/reviews/krion.jpg" alt="" /></a></div>
+            
+<div class="col-md-8 col-xs-9 vcenter">
+             <p>&nbsp; &nbsp; &nbsp;<i><span style="font-size:larger;">УП «Крион»</span></i></p> 
+           </div>
+           </div>
+            
+            
+            
+            <div class="row box">
+         <div class="col-md-2 col-xs-3 "> <a class="fancybox-button" rel="fancybox-button" href="img/reviews/matiolli.jpg" title="Holly blue (Masa_N)"><img class="img-responsive" src="img/reviews/matiolli.jpg" alt="" /></a></div>
+            
+          
+            
+<div class="col-md-8 col-xs-9 vcenter">
+             <p>&nbsp; &nbsp; &nbsp;<i><span style="font-size:larger;">Иностранное предприятие «Маттиоли»</span></i></p> 
+            
+            
+        </div>
+       </div>
+       
+         
+            
+       
+       
+         <div class="row box">
+         
+             <div class="col-md-2 col-xs-3 "> <a class="fancybox-button" rel="fancybox-button" href="img/reviews/zavod_som.pdf" title="Holly blue (Masa_N)"><img class="img-responsive" src="img/reviews/zavod_com2.jpg" alt="" /></a></div>
+            
+<div class="col-md-8 col-xs-6 vcenter">
+            <p>&nbsp; &nbsp; &nbsp;<i><span style="font-size:larger;"> ОАО «Октябрьский завод СОМ»</span></i></p>
+            
+
+        </div>
+       </div>
+       
+         <div class="row box">
+            
+             <div class="col-md-2 col-xs-3 "> <a class="fancybox-button" rel="fancybox-button" href="img/reviews/bereza_syrodelniy_zavod.pdf" title="Holly blue (Masa_N)"><img class="img-responsive" src="img/reviews/slucky_syr2.jpg" alt="" /></a></div>
+            
+<div class="col-md-8 col-xs-6 vcenter">
+            <p>&nbsp; &nbsp; &nbsp;<i><span style="font-size:larger;"> ОАО «Слуцкий сыродельный комбинат»</span></i></p>
+            
+
+        </div>
+       </div>                                                           
+                        <footer>
+        <div class="container ">
+            <div class="row ">
+                <div class="col-lg-12 text-center">
+                   
+
+ <p>УНН 100041478&nbsp;&nbsp;&nbsp;ОКПО 14502515 &nbsp;&nbsp;&nbsp;&copy; <b>УП «ДЖЕВЕТ» 2015 | Все права защищены</b>&nbsp;&nbsp;&nbsp;(017) 397 20 44&nbsp;&nbsp; &nbsp;(029) 631-11-30               <br>
+
+                </div>
+            </div>
+        </div>
+    </footer>
+       <!-- Javascript -->
+      
+        <script src="js/bootstrap.min.js"></script> 
+        <script type="text/javascript" src="js/jquery.flexisel.js"></script>
+                                                                                
+       
+       
+       
+    </body>                        
